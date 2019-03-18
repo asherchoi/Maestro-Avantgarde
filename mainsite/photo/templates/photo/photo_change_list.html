@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Art Release</title>
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block title %}photo_change_list.html{% endblock %}
+
+    {% block content %}
+    <section>
+        <h1 style="color:#ed7d7d">Photo Change - {{user}}</h1>
+        <table class="Change-list">
+        <tr>
+            <th>Art</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Owner</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+
+        {% for item in object_list %}
+        <tr>
+            <td><img style="max-width:50%" src ="{{object.ssibal}} " onerror="this.onerror=null;this.src='https://cdn.dribbble.com/users/479985/screenshots/1719391/loader_seq.gif'"/></td>
+            <td>{{item.title}}</td>
+            <td>{{item.description|linebreaks }}</td>
+            <td>{{ item.owner }}</td>
+            <td><a href="{% url 'photo:photo_update' item.id %}">Update</a></td>
+            <td><a href="{% url 'photo:photo_delete' item.id %}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    </section>
+    {% endblock%}
+</body>
+</html>

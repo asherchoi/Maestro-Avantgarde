@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Art gallery</title>
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block title %}gallery_list.html{% endblock %}
+    {% load staticfiles %}
+    {% block extrastyle %}{% static "photo/photo.css" %}{% endblock %}
+
+    {% block content %}
+        <section>
+        <h1 style="color:#ed7d7d">Art Gallery</h1></br>
+            <h2>You can enjoy the art works of other people through the art gallery</h2>
+            <hr/>
+            <div class="box alt">
+            <div class="row 50% uniform">
+
+                {% for photo in  object_list %} <!--Photo를 가지고온다-->
+                <div class="3u"><span class="image fit">
+                   <a href="{{ photo.get_absolute_url }}">
+                              <img class = "thumbnail" src="{{ photo.ssibal }}" onerror="this.onerror=null;this.src='https://cdn.dribbble.com/users/479985/screenshots/1719391/loader_seq.gif'"/>
+                   </a>
+                    <h3><li>Title : {{ photo.title }}</li></h3>
+                    <h3><li>Creator : {{ photo.owner }}</li></h3>
+                    <h3><li>Date : {{ photo.upload_date|date:"Y-m-d"}}</li></h3>
+                </span>
+                </div>
+                {% endfor %}
+            </div>
+            </div>
+            <div>
+            <span>
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number}}">PreviousPage</a>
+                {% endif%}
+
+                Page {{ page_obj.number}} of {{page_obj.paginator.num_pages}}
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">NextPage</a>
+                {% endif%}
+            </span>
+            </div>
+        </section>
+    {% endblock %}
+</body>
+</html>

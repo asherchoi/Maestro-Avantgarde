@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:blog="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block title %}Post_search.html{% endblock %}
+
+    {% block content %}
+    <section>
+        <h1>Art Search</h1>
+        <form action="." method="post">
+            {% csrf_token %}
+            {{ form.as_table }}
+            <input type="submit" value="Submit"/>
+        </form>
+
+        <br/>
+        <br/>
+
+        {% if object_list %}
+        {% for post in object_list %}
+            <h2><a href='{% url 'blog:post_detail' post.slug  %}'>{{post.title}}</a> </h2>
+            {{post.modify_date| date:"N d, Y"}}
+            <p>{{post.description}}</p>
+        {% endfor %}
+
+        {% elif search_term %}
+        <b><i>Search Word({{ search_term}})Not Found !</i></b>
+        {%endif%}
+    </section>
+    {% endblock %}
+</body>
+</html>

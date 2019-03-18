@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title>{% block title %}Maestro Art gallery {% endblock %}</title>
+
+    {% load staticfiles %}
+
+
+    <!-- Scripts -->
+        <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+        <script src="{% static 'assets/js/skel.min.js' %}"></script>
+        <script src="{% static 'assets/js/util.js' %}"></script>
+        <script src="{% static 'assets/js/ie/respond.min.js' %}"></script>
+        <script src="{% static 'assets/js/main.js' %}"></script>
+    <!--[if lte IE 8]><script src="{% static 'assets/js/ie/html5shiv.js' %}"></script><![endif]-->
+
+        <link rel="stylesheet" href="{% static 'assets/css/main1.css' %}" />
+        <!--[if lte IE 9]><link rel="stylesheet" href="{% static 'assets/css/ie9.css' %}" /><![endif]-->
+        <!--[if lte IE 8]><link rel="stylesheet" href="{% static 'assets/css/ie8.css' %}" /><![endif]-->
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>
+        <link rel="stylesheet" type="text/css" href="{% block extrastyle %}{% endblock %}" />
+        <link href="https://fonts.googleapis.com/css?family=Kranky" rel="stylesheet">
+    <!-- Scripts -->
+
+
+</head>
+<body>
+        <style type="text/css">
+        @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+
+
+        body {
+
+          font-family: 'Hanna';
+
+        }
+        p1 {
+        font-family: 'Kranky', cursive;
+        }
+
+        </style>
+    <div id="wrapper">
+        <!-- Main -->
+		<div id="main">
+			<div class="inner">
+
+	        <!-- Header -->
+            <header id="header">
+
+                <section id="search" class="alt">
+
+                </section>
+			</header>
+
+            {% block content %}{%endblock%}
+
+		    </div>
+	    </div>
+    <!-- Sidebar -->
+	<div id="sidebar">
+		<div class="inner">
+           {% if user.is_active %}
+            <div>
+              <header class="major"><h2 style="color:#ed7d7d">welcome, <strong style="color:#ed7d7d">{% firstof user.get_short_name user.get_username %}</strong> </h2></header>
+                  <h4><ul class="actions small"><li>
+                      <a href="{% url 'password_change' %}" class="button"> Change PW </a>
+                      <a href="{% url 'logout' %}"class="button">Logout</a></li></ul></h4>
+            </div>
+            {% else %}
+            <div>
+                 <header class="major"> <h2 style="color:#ed7d7d"><strong>Welcome, Anonymous </strong></h2></header>
+             <h4>
+                 <ul class="actions small">
+                 <li><a href="{% url 'login' %}" class="button special">Login</a></li>
+                 <li><a href="{% url 'register' %}" class="button">Register</a></li>
+             </ul>
+             </h4>
+            </div>
+
+        {% endif %}
+
+
+            <!-- Menu -->
+                <nav id="menu">
+                    <header class="major">
+                        <h2 style="color:#ed7d7d">Menu</h2>
+                    </header>
+                    <ul>
+                        <li><a href="{% url 'home' %}" class="icon fa-home">  Home</a></li>
+                        <li><a href="{% url 'photo:photo_list' %}" class="icon fa-photo">  Art Gallery</a></li>
+                        <li><a href="{% url 'photo:photo_Mylist' %}" class="icon fa-photo">  {{user}} Gallery</a></li>
+                        <li><a href="{% url 'photo:photo_create' %}" class="icon fa-paint-brush">  Art generation</a></li>
+
+                        <li>
+                            <span class="opener"><a class="icon fa-rotate-left" >  Change</a></span>
+                            <ul>
+
+                                 <li><a href="{% url 'photo:photo_change' %}">Photo change</a> </li>
+
+
+                            </ul>
+                        </li>
+                        <li><a href="{% url 'photo:search' %}" class="icon fa-search">  Search</a> </li>
+                        <li><a href="{% url 'admin:index' %}" class="icon fa-gear">  Set up</a> </li>
+
+                    </ul>
+                </nav>
+                <section>
+                    <header class="major">
+                        <h2 style="color:#ed7d7d">Hall of Fame</h2>
+                    </header>
+                    <div class="mini-posts">
+                        <article>
+
+                            <a href="#" class="image"><img src="{% static 'images/1 (9).PNG'%}" alt="" /></a>
+                            <p>Artist: 이동열<br/>Title: 어머니의 마음<br/>View: 2,409<br/>Like: 1,202</p>
+                        </article>
+                        <article>
+                            <a href="#" class="image"><img src="{% static 'images/1 (12).PNG'%}" alt="" /></a>
+                            <p>Artist: 정상수<br/>Title: 노을<br/>View: 12,151<br/>Like: 984</p>
+                        </article>
+                        <article>
+                            <a href="#" class="image"><img src="{% static 'images/1 (3).PNG'%}" alt="" /></a>
+                            <p>Artist: 이재혁<br/>Title: 유리 딸기<br/>View: 1,914<br/>Like: 951</p>
+                        </article>
+                    </div>
+                    <ul class="actions">
+                        <li><a href="#" class="button">More</a></li>
+                    </ul>
+                </section>
+
+                <footer id="footer">
+                    <p class="copyright">&copy; Maestro Art Gallery made by Avant-grade of <a href="http://www.hufs.ac.kr/">한국외국어대학교.</a></p>
+                </footer>
+        </div>
+        </div>
+	</div>
+
+</body>

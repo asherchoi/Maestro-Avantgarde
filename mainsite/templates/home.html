@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block title %}Maestro Art gallery{% endblock %}
+    {% block content %}
+    {% load staticfiles %}
+    <!--{% block extrastyle %}{% static "css/home.css" %}{% endblock %}-->
+							<!-- Banner -->
+  <section>
+            <div class="row 200%">
+         <div class="6u 12u$(medium)" align="center">
+             <div class="10u">
+                 <span class="image fit">
+            <a href="/"><img src="{% static 'img/main-img4.png'%}" height="500"/></a>
+                 </span>
+            </div>
+         </div>
+                <div class="6u 12u$(medium)">
+                <div class="box alt">
+                <p1>  <h1>Maestro Art Gallery<br/>
+                    by Avant-Grade</h1></p1>
+            <p>저희 "Maestro Art Gallery"를 이용한다면 당신도 예술가가 될 수 있습니다. 지금 바로 당신의 감정을 예술로 표현하고 다른 사람들과 공유해 보세요. </p>
+            <ul>
+                <video width="500" height="300" controls src ="{% static 'AD/Ad.mp4'%}" loop autoplay></video>
+                <p>When you want to inquire about advertising. 02-1234-4567</p>
+            </ul>
+                </div>
+        </div>
+
+            </div>
+    </section>
+							<!-- Section -->
+    <section>
+        <header class="major">
+            <h2 style="color:#ed7d7d">Newsfeed</h2>
+        </header>
+
+        <div class="box alt">
+            <div class="row 50% uniform">
+                {% for photo in  object_list %} <!--Photo를 가지고온다-->
+                <div class="3u">
+                <figure class="snip1273">
+                  <a href="{{ photo.get_absolute_url }}">
+                              <img class = "thumbnail" src="{{ photo.ssibal }}" onerror="this.onerror=null;this.src='https://cdn.dribbble.com/users/479985/screenshots/1719391/loader_seq.gif'"/>
+                   </a>
+                  <figcaption>
+                    <h3><li>Title : {{ photo.title }}</li></h3>
+                    <h3><li>Creator : {{ photo.owner }}</li></h3>
+                    <h3><li>Date : {{ photo.upload_date|date:"Y-m-d"}}</li></h3>
+                  </figcaption>
+                  <a href="#"></a>
+                </figure>
+                </div>
+                {% endfor %}
+            </div>
+            </div>
+    </section>
+    {% endblock content %}
+
+
+</body>
+</html>

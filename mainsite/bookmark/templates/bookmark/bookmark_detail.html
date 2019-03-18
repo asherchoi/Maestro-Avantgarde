@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Art Release</title>
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block title %}New Art Release{% endblock %}
+
+    {% block content %}
+    <div id ="content">
+        <h1>{{object.title}}</h1>
+        <ul>
+            <li> URL : <a href='#'>{{object.url}}</a> </li>
+        </ul>
+    </div>
+    {% endblock %}
+</body>
+</html>

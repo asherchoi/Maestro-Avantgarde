@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:blog="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block title %}Photo_search.html{% endblock %}
+
+    {% block content %}
+    <section>
+        <h1>Art Search</h1>
+        <form action="." method="post">
+            {% csrf_token %}
+            {{ form.as_table }}
+            <input type="submit" value="Submit"/>
+        </form>
+
+        <br/>
+        <br/>
+
+        {% if object_list %}
+        {% for photo in object_list %}
+
+            <a href="{{ photo.get_absolute_url }}">
+            <img style="max-width:100%" src ="{{photo.result_url}} " onerror="this.onerror=null;this.src='https://cdn.dribbble.com/users/479985/screenshots/1719391/loader_seq.gif'"/>
+            </a>
+            <h3><li>Title : {{ photo.title }}</li></h3>
+            <h3><li>Creator : {{ photo.owner }}</li></h3>
+            <h3><li>Date : {{ photo.upload_date|date:"Y-m-d"}}</li></h3>
+        {% endfor %}
+
+        {% elif search_term %}
+        <b><i>Search Word({{ search_term}})Not Found !</i></b>
+        {%endif%}
+    </section>
+    {% endblock %}
+</body>
+</html>

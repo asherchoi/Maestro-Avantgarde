@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Art Release</title>
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block title %}New Art Release{% endblock %}
+
+    {% block content %}
+    <div id =  "content">
+        <h1>New Art Release List</h1>
+        <ul>
+            {% for bookmark in object_list %}
+                <li><a href="{% url 'bookmark:detail' bookmark.id %}">{{bookmark}}</a> </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endblock %}
+
+</body>
+</html>

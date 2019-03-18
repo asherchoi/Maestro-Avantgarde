@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Maestro Art gallery</title>
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block title %}register_done.html{% endblock %}
+
+    {% block content %}
+    <section>
+        <h1 style="color:#ed7d7d">Registration Completed Successfully </h1>
+        <p>Thank you for registering.</p>
+        <p><a href="{% url 'login' %}">Log in again</a> </p>
+    </section>
+    {% endblock %}
+
+</body>
+</html>

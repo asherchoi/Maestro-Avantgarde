@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Art Release</title>
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block title %}photo_detail.html{% endblock %}
+    {% load staticfiles %}
+    {% block extrastyle %}{% static "photo/photo.css" %}{% endblock %}
+
+    {% block content %}
+        <section>
+            <header class="major"><h3>Art Title : {{ object.title }}</h3></header>
+            <div class="row 200%">
+            <div class="6u 12u$(medium)" align="center">
+            <div style="float:right;"><input  type="button" class="like" name="{{object.id}}" value="Like">
+            <p id="count{{object.id }}">count : {{ object.total_likes }}</p>
+            </div>
+            <div class="11u" >
+            <span class="image fit">
+                <a href="{{ object.image.url }}">
+                <img style="max-width:100%" src ="{{object.ssibal}} " onerror="this.onerror=null;this.src='https://cdn.dribbble.com/users/479985/screenshots/1719391/loader_seq.gif'"/>
+                </a>
+            </span>
+           </div>
+
+            <div class="11u 12u$(medium)" align="center">
+                <div class="row 50% uniform">
+                    <div class="6u" >
+                        <span class="image fit">
+                            <a href="{{ object.image_content.url }}">
+                            <img style="max-width:100%" src ="{{object.image_content.url}}"/>
+                            </a>
+
+                        </span>
+                    </div>
+                    <div class="6u">
+                        <span class="image fit">
+                            <a href="{{ object.image_style.url }}">
+                            <img style="max-width:100%" src ="{{object.image_style.url}}"/>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+             </div>
+             </div>
+
+            <div class="6u 12u$(medium)">
+            <div class="box alt">
+
+             <ul>
+                <li><b>Photo Description</b></li>
+                {% if object.description %}<p>{{object.description|linebreaks}}</p>
+                {% else %}<p>(blank)</p>{% endif %}
+                 <li><b>Date Uploaded</b></li>
+                    <p>{{ object.upload_date }}</p>
+                 <li><b>Photo info change</b></li>
+                 <p><a href="{% url 'photo:photo_update' photo.id %}">Update</a>  /  <a href="{% url 'photo:photo_delete' photo.id %}">Delete</a></p>
+
+            </ul>
+            <ul>
+                <div>
+                    
+                     {% load disqus_tags %}
+                     {% disqus_show_comments %}
+                </div>
+            </ul>
+            </div>
+            </div>
+
+        </div>
+                    <script type="text/javascript">
+                        
+            $('.like').click(function(){
+                var pk = $(this).attr('name')
+                      $.ajax({
+                                type: "POST",
+                                url: "{% url 'photo:like' %}",
+                                data: {'pk': pk, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                                dataType: "json",
+
+
+                                success: function(response){
+                                        id = $(this).attr('name');
+                                        $('#count'+ pk).html("count : "+ response.likes_count);
+
+                                        },
+                                error:function(request,status,error){
+                                         alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                                         }
+                        });
+          })
+        </script>
+    </section>
+
+    {% endblock %}
+</body>
+</html>

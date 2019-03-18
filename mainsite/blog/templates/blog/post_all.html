@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:blog="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>The Honor Artist</title>
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block title %}The Honor Artist{% endblock %}
+
+    {% block content %}
+    <div id="content">
+    <h1>The Honor Artist</h1>
+    {% for post in posts %}
+        <h2><a href='{% url 'blog:post_detail' post.slug  %}'>{{post.title}}</a> </h2>
+        {{post.modify_date| date:"N d, Y"}}
+        <p>{{post.description}}</p>
+    {% endfor %}
+    <br/>
+
+    <div>
+        {% load disqus_tags %}
+        {% disqus_show_comments %}
+    </div>
+
+
+    <div>
+        <span>
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number}}">PreviousPage</a>
+            {% endif%}
+
+            Page {{ page_obj.number}} of {{page_obj.paginator.num_pages}}
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">NextPage</a>
+            {% endif%}
+        </span>
+    </div>
+    </div>
+    {% endblock %}
+</body>
+</html>

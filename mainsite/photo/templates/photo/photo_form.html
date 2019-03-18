@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Art Release</title>
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block title %}photo_form.html{% endblock %}
+    {% load staticfiles %}
+    {% block extrastyle %}{% static "photo/photo.css" %}{% endblock %}
+
+    {% block content %}
+    <section>
+
+        <header class="major"><h1 style="color:#ed7d7d">Create Art</h1></header>
+        <div class="11u">
+        <div class="image fit">
+         <a href="/"><img src="{% static 'img/guide.png'%}" /></a>
+        </div>
+        </div>
+
+        <h2>Creator:  {{user}}</h2>
+
+        {% if form.is_multipart %}
+        <form enctype="multipart/form-data" method="post" action=".">
+        {% else %}
+        <form method="post" action=".">
+        {% endif %}
+        {% csrf_token %}
+
+            {% if form.errors %}
+            <p class="errornote">Wrong! Please correct the error(s) below.</p>
+            {% endif %}
+
+            <p>Please fill out the information for making artwork</p>
+
+            <fieldset class="aligned">
+
+                <br/>
+                <h2><b>Photo title</b></h2>
+                <div class="form-row">
+                    <h2>{{form.title.lable_tag}}</h2>{{form.title}}
+                </div>
+
+                <div class="form-row">
+                    <h2>{{form.description.label_tag}}</h2>{{form.description}}
+                </div>
+
+                <div class="form-row">
+                    <h2>{{ form.image_content.label_tag }}</h2>{{ form.image_content }}
+                </div>
+
+                <div class="form-row">
+                    <h2>{{ form.image_style.label_tag }}</h2>{{ form.image_style }}
+                </div>
+            </fieldset>
+            <br/>
+            <div class="submit-row">
+                <input type="submit" value="Submit"/>
+            </div>
+
+            <script type="text/javascript">document.getElementById('id_gallery').focus();</script>
+        </form>
+    </section>
+    {% endblock %}
+</body>
+</html>

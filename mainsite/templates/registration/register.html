@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Maestro Art gallery</title>
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block title %}register.html{% endblock %}
+
+    {% load staticfiles %}
+    {% block extrastyle %}{% static "css/forms.css" %}{% endblock %}
+
+    {% block content %}
+    <section>
+        <h1 style="color:#ed7d7d">New User Registration </h1>
+
+        <form method="post" action=".">{% csrf_token %}
+        {% if form.errors %}
+            <p class="errornote">Wrong! Please correct the error(s) below.</p>
+        {% endif %}
+
+        <p>Please enter your username etc.</p>
+        <fieldset class="aligned">
+            <div class="form-row">
+                <h2>{{form.username.label_tag}}</h2>{{form.username}}
+            </div>
+            <div class="form-row">
+                <h2>{{form.password1.label_tag}}</h2>{{form.password1}}
+            </div>
+            <div class="form-row">
+                <h2>{{form.password2.label_tag}}</h2>{{form.password2}}
+            </div>
+
+        </fieldset>
+        <div class="submit-row">
+            <input type="submit" value="Register"/>
+        </div>
+
+
+        <script type="text/javascript">document.getElementById('id_username').focus();
+        </script>
+        </form>
+
+    </section>
+    {% endblock %}
+</body>
+</html>
