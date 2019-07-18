@@ -4,5 +4,5 @@ Implementation of [Neural Style Transfer](https://arxiv.org/abs/1508.06576) in K
  
  ## Column
  
- [글로벌캠퍼스, '2018 한국외대 전공탐색' 성황리에 마쳐](http://builder.hufs.ac.kr/user/indexSub.action?framePath=unknownboard&siteId=hufs&dum=dum&boardId=41994&page=1&command=view&boardSeq=101847637)
+HUFS Today [글로벌캠퍼스, '2018 한국외대 전공탐색' 성황리에 마쳐](http://builder.hufs.ac.kr/user/indexSub.action?framePath=unknownboard&siteId=hufs&dum=dum&boardId=41994&page=1&command=view&boardSeq=101847637)
 
