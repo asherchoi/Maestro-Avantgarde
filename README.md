@@ -18,15 +18,18 @@ Implementation of [Neural Style Transfer](https://arxiv.org/abs/1508.06576) in K
  ## Run
  `python manage.py runserver 0.0.0.0:8080`
   
+ ## User Interface
+ ![](https://github.com/asherchoi/deep-artgallery/blob/master/notebook%20and%20backup/run1.png)
+ ![](https://github.com/asherchoi/deep-artgallery/blob/master/notebook%20and%20backup/run2.png)
+ 
  ## System Configuration Map
 ![](https://github.com/asherchoi/deep-artgallery/blob/master/notebook%20and%20backup/SCM.JPG) 
 
  ## DFD
  ![](https://github.com/asherchoi/deep-artgallery/blob/master/notebook%20and%20backup/DFD.JPG)
  
- ## User Interface
- ![](https://github.com/asherchoi/deep-artgallery/blob/master/notebook%20and%20backup/run1.png)
- ![](https://github.com/asherchoi/deep-artgallery/blob/master/notebook%20and%20backup/run2.png)
+ ## Mechanism
+ ![](https://github.com/asherchoi/deep-artgallery/blob/master/notebook%20and%20backup/HIW.JPG)
  
  ## Team Avant-Garde
 Jung jaewon, Jung sangsu, Lee dongyeol, Lee jaehyuk, Choi teahun
