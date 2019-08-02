@@ -2,20 +2,20 @@
 Web Art Gallery Service System from the project of [HUFS ICE 2017 Engineering capstone design class](http://mclab.hufs.ac.kr/wiki/Lectures/CAP/2017/Results/Team_Avante_Garde). </br>
 Implementation of [Neural Style Transfer](https://arxiv.org/abs/1508.06576) in Keras 2.0+ with Django python web framework by team avant-garde
  
- ## Visualize Style Transfer
- 
  ## System Configuration Map
  
- ## Panel
+ ## Visualize Style Transfer
+ 
+ ### DFD
  
  ## Dependency
 *Python 3.7.3 anaconda
-*Scipy 1.1.0
-*Tensorflow-GPU 1.14.0
-*Keras 2.24 
-*Django 1.10
-*Django-disqus 0.5
-*CUDA 10.0
+Scipy 1.1.0
+Tensorflow-GPU 1.14.0
+Keras 2.24 
+Django 1.10
+Django-disqus 0.5
+CUDA 10.0
 
  ## Run
  `python manage.py runserver 0.0.0.0:8080`
