@@ -9,13 +9,13 @@ Implementation of [Neural Style Transfer](https://arxiv.org/abs/1508.06576) in K
  ### DFD
  
  ## Dependency
-*Python 3.7.3 anaconda
-+Scipy 1.1.0
-+Tensorflow-GPU 1.14.0
-+Keras 2.24 
-+Django 1.10
-+Django-disqus 0.5
-+CUDA 10.0
++ Python 3.7.3 anaconda
++ Scipy 1.1.0
++ Tensorflow-GPU 1.14.0
++ Keras 2.24 
++ Django 1.10
++ Django-disqus 0.5
++ CUDA 10.0
 
  ## Run
  `python manage.py runserver 0.0.0.0:8080`
