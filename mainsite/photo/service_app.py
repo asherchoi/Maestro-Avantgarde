@@ -1,26 +1,15 @@
-
 '''
 Base on  Leon. A. Gatys, Alexander S. Ecker, Matthias Bethge, "A Neural Algorithm of Artistic Style", arXiv: 1508.06576
-
 HUFS information communication engineering systhesis design class
-
 Made by 1team(avant-garde) 2017. 11. 3
 '''
-
-
 import time, math, sys
 import numpy as np
 from scipy.optimize import minimize
-from scipy.misc import imread, imsave, imresize
-
+from scipy.misc.pilutil import imread, imsave, imresize
 import keras.backend as K
 from keras.applications import vgg16
 from keras.applications.imagenet_utils import preprocess_input
-
-#CONTENT_IMAGE_FILEPATH = './content_img/hufs.jpg'
-#STYLE_IMAGE_FILEPATH = './style_img/korea2.jpg'
-#RESULT_IMAGE_FILEPATH = './result_img/result.jpg'
-
 
 class StyleTransfer():
 	def __init__(self, content_image_filepath, style_image_filepath, result_image_filepath):
@@ -29,7 +18,7 @@ class StyleTransfer():
 		self.result_image_filepath = result_image_filepath
 		self.alpha_content = 0.01
 		self.beta_style = 1
-		self.iterations = 500
+		self.iterations = 100
 		self.iteration = 0
 		self.cnn_model = vgg16.VGG16(weights='imagenet', include_top=False) #not using 3 fully connected layers
 		self.content_layer = 'block5_conv1'
@@ -47,21 +36,16 @@ class StyleTransfer():
 		print('==========step 1: pre processing image==========')
 		self.read_content_img()
 		self.read_style_img()
-
 		print('============step 2: get loss fuctions===========')
 		self.content_loss()
 		self.style_loss()
 		self.total_loss()
-
 		print('==========step 3: optimize total loss===========')
 		self.get_loss_gradient()
 		self.make_noise_image()
 		self.optimize()
-
 		print('=========step 4: post processing image==========')
 		K.clear_session()
-		self.redirect()
-        
 		toc = time.time()
 		print('Total elapsed %.2f' %(toc-tic))
 		
@@ -71,18 +55,14 @@ class StyleTransfer():
 		else:
 			layers = self.style_layers
 		return layers
-	
 
 	def read_content_img(self):
 		self.content_image = imread(self.content_image_filepath)
-		self.content_image_shape = (self.content_image.shape[0], self.content_image.shape[1], 3) #
+		self.content_image_shape = (self.content_image.shape[0], self.content_image.shape[1], 3)
 		self.e_image_shape = (1,) + self.content_image_shape
 		self.content_pre = self.pre_process_image(self.content_image.reshape(self.e_image_shape).astype(K.floatx()))
-		print('> Loading content image: %s (%dx%d)' % (self.content_image_filepath, self.content_pre.shape[2], self.content_pre.shape[1]))
-		self.content_filters_responses = self.get_filters_response([self.content_pre]) #many thing?
-		#print(self.content_filters_responses)
+		self.content_filters_responses = self.get_filters_response([self.content_pre])
 		self.content_representations = K.variable(value=self.content_filters_responses[self.layers.index(self.content_layer)])
-		#print(self.content_representations)
 
 	def read_style_img(self):
 		self.style_image = imread(self.style_image_filepath)
@@ -93,12 +73,8 @@ class StyleTransfer():
 			print(self.e_image_shape)
 			self.style_pre = self.pre_process_image(self.style_image.reshape(self.e_image_shape).astype(K.floatx()))
 		self.style_filters_responses = self.get_filters_response([self.style_pre])
-		#print(self.style_filters_responses)
-		self.style_representations = [self.gram_matrix(o) for o in self.style_filters_responses] #style representation define by filters correlation
-		#print(self.style_filters_responses)
+		self.style_representations = [self.gram_matrix(o) for o in self.style_filters_responses]
 
-
-    
 	def content_loss(self):
 		self.content_loss_function = 0.5 * K.sum(K.square(self.content_representations - self.cnn_model.get_layer(self.content_layer).output))
 		print('> Complete define content loss function')
@@ -130,7 +106,6 @@ class StyleTransfer():
 		self.noise_image = self.content_pre.copy()
 		print('> Make noise image based content image')
 		
-
 	def optimize(self):
 		print('> Starting optimazation with %s method' %self.optimization_method)
 		minimize(fun=self.loss, x0=self.noise_image.flatten(), options={'maxiter':self.iterations},
@@ -143,7 +118,6 @@ class StyleTransfer():
 		print('Loss: %.2f' % loss)
 		return loss
 
-
 	def loss_gradient(self, image):
 		return np.array(self.loss_function_gradient([image.reshape(self.e_image_shape).astype(K.floatx())])).astype('float64').flatten()
 
@@ -152,12 +126,8 @@ class StyleTransfer():
 		if self.iteration >= self.iterations:
 			print('Complete style transfer')
 			self.save_image(image)
-			#sys.exit(0)
 		self.noise_image = image.copy()
 		print('Optimization step: %d/%d' % (self.iteration, self.iterations))
-		#self.save_image(image)
-
-
 
 	def gram_matrix(self, filters):
 		c_filters = K.batch_flatten(K.permute_dimensions(K.squeeze(filters, axis=0), pattern=(2, 0, 1)))
@@ -174,7 +144,4 @@ class StyleTransfer():
 
 	def save_image(self, image):
 		imsave(self.result_image_filepath, self.postprocessing_img(image.reshape(self.e_image_shape).copy()))
-
-	def redirect(self):
-		return
 
