@@ -30,7 +30,7 @@ Implementation of [Neural Style Transfer](https://arxiv.org/abs/1508.06576) in K
  ![](https://github.com/asherchoi/deep-artgallery/blob/master/notebook%20and%20backup/HIW.JPG)
  
  ## Team Avant-Garde
- ![](https://github.com/asherchoi/deep-artgallery/blob/master/notebook%20and%20backup/team.jpeg)
+ ![](https://github.com/asherchoi/deep-artgallery/blob/master/notebook%20and%20backup/team.jpeg) </br>
 (Left) Choi teahun, Lee jaehyuk, Jung jaewon, Jung sangsu, Lee dongyeol
  
  ## Column
