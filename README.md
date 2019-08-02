@@ -30,7 +30,8 @@ Implementation of [Neural Style Transfer](https://arxiv.org/abs/1508.06576) in K
  ![](https://github.com/asherchoi/deep-artgallery/blob/master/notebook%20and%20backup/HIW.JPG)
  
  ## Team Avant-Garde
-Jung jaewon, Jung sangsu, Lee dongyeol, Lee jaehyuk, Choi teahun
+ ![](https://github.com/asherchoi/deep-artgallery/blob/master/notebook%20and%20backup/team.jpeg)
+(Left) Choi teahun, Lee jaehyuk, Jung jaewon, Jung sangsu, Lee dongyeol
  
  ## Column
 HUFS Today [글로벌캠퍼스, '2018 한국외대 전공탐색' 성황리에 마쳐](http://builder.hufs.ac.kr/user/indexSub.action?framePath=unknownboard&siteId=hufs&dum=dum&boardId=41994&page=1&command=view&boardSeq=101847637)
