@@ -2,9 +2,6 @@
 Web Art Gallery Service System from the project of [HUFS ICE 2017 Engineering capstone design class](http://mclab.hufs.ac.kr/wiki/Lectures/CAP/2017/Results/Team_Avante_Garde). </br>
 Implementation of [Neural Style Transfer](https://arxiv.org/abs/1508.06576) in Keras 2.0+ with Django python web framework by team avant-garde
 
- ## Visualize Style Transfer
- [neural_style_transfer.ipynb](https://github.com/asherchoi/deep-artgallery/blob/master/notebook%20and%20backup/neural_style_transfer.ipynb)
-
  ## Dependency
 + Python 3.7.3 anaconda
 + Scipy 1.1.0
@@ -29,6 +26,7 @@ Implementation of [Neural Style Transfer](https://arxiv.org/abs/1508.06576) in K
  ![](https://github.com/asherchoi/deep-artgallery/blob/master/notebook%20and%20backup/DFD.JPG)
  
  ## Mechanism
+ [neural_style_transfer.ipynb](https://github.com/asherchoi/deep-artgallery/blob/master/notebook%20and%20backup/neural_style_transfer.ipynb)
  ![](https://github.com/asherchoi/deep-artgallery/blob/master/notebook%20and%20backup/HIW.JPG)
  
  ## Team Avant-Garde
